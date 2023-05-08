@@ -9,7 +9,7 @@ const path = require('path')
 
 // set body parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // script upload
 
@@ -107,7 +107,7 @@ app.put('/api/mahasiswa/:nim', (req, res) => {
     const tanggal_lahir = req.body.tanggal_lahir;
     const alamat = req.body.alamat;
 
-    const queryUpdate = 'UPDATE mahasiswa SET nama=?,tanggal_lahir=?,alamat=? WHERE nim = ?';
+    const queryUpdate = 'UPDATE mahasiswa SET nama=  ?,tanggal_lahir=?,alamat=? WHERE nim = ?';
 
     // jalankan query untuk melakukan pencarian data
     koneksi.query(querySearch, req.params.nim, (err, rows, field) => {
@@ -133,6 +133,7 @@ app.put('/api/mahasiswa/:nim', (req, res) => {
         }
     });
 });
+
 
 // delete data
 app.delete('/api/mahasiswa/:nim', (req, res) => {
